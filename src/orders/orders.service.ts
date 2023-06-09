@@ -1,19 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderInput } from './dto/create-order.input';
 import { UpdateOrderInput } from './dto/update-order.input';
+import { InjectModel } from '@nestjs/sequelize';
+import { Order } from './orders.model';
 
 @Injectable()
 export class OrdersService {
+  constructor(
+    @InjectModel(Order)
+    private orderModel: typeof Order
+    ) {}
+
   create(createOrderInput: CreateOrderInput) {
     return 'This action adds a new order';
   }
 
   findAll() {
-    return `This action returns all orders`;
+    return this.orderModel.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+  findOne(id: number): Promise<Order> {
+    return this.orderModel.findOne({
+      where: {
+        id,
+      }
+    });
   }
 
   update(id: number, updateOrderInput: UpdateOrderInput) {
