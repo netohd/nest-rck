@@ -13,15 +13,19 @@ export class OrdersResolver {
   //   return this.ordersService.create(createOrderInput);
   // }
 
-  // @Query(() => [Order])
-  // findAll(): Promise<Order[]> {
-  //   return this.ordersService.findAll();
-  // }
+  @Query(() => [Order])
+  findAll(): Promise<Order[]> {
+    return this.ordersService.findAll();
+  }
 
-  @Query(() => CreateOrderInput)
+  @Query(() => Order)
   findOne(@Args('id') id: number) {
-    // return this.ordersService.findOne(id)
     return this.ordersService.findOne(id)
+  }
+
+  @Mutation(() => Order)
+  createOrder(@Args('data') data: CreateOrderInput) {
+    return this.ordersService.create(data)
   }
 
   // @Mutation('updateOrder')

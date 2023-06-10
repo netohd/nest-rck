@@ -1,31 +1,29 @@
-import { UUID } from "crypto";
+import { Field, ObjectType } from "@nestjs/graphql";
+import { STRING } from "sequelize";
 import { Table, Column, DataType, Model } from "sequelize-typescript";
 
+@ObjectType()
 @Table({ tableName: 'order' })
 export class Order extends Model {
-    @Column({ 
-        type: DataType.INTEGER,
+    @Field()
+    @Column({
         primaryKey: true
     })
     id: number
     
-    @Column({
-        type: DataType.STRING
-    })
+    @Field()
+    @Column
     status_id: string
 
-    @Column({
-        type: DataType.UUID
-    })
+    @Field()
+    @Column
     address_id: string
 
-    @Column({
-        type: DataType.DATE
-    })
+    @Field()
+    @Column
     creation_date: Date
 
-    @Column({
-        type: DataType.NUMBER
-    })
+    @Field()
+    @Column
     value: number
 }

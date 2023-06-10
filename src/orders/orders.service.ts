@@ -9,10 +9,10 @@ export class OrdersService {
   constructor(
     @InjectModel(Order)
     private orderModel: typeof Order
-    ) {}
+  ) { }
 
-  create(createOrderInput: CreateOrderInput) {
-    return 'This action adds a new order';
+  create(data: CreateOrderInput) {
+    return this.orderModel.create(data as any)
   }
 
   findAll() {
