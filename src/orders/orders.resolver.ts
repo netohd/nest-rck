@@ -1,8 +1,8 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { OrdersService } from './orders.service';
-import { UpdateOrderInput } from './dto/update-order.input';
 import { Order } from './orders.model';
 import { CreateOrderInput } from './dto/create-order.input';
+import { FindAllArgs } from './dto/find-all.args'
 
 @Resolver()
 export class OrdersResolver {
@@ -14,8 +14,8 @@ export class OrdersResolver {
   // }
 
   @Query(() => [Order])
-  findAll(): Promise<Order[]> {
-    return this.ordersService.findAll();
+  findAll(@Args() args: FindAllArgs) {
+    return this.ordersService.findAll(args);
   }
 
   @Query(() => Order)

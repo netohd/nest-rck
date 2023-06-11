@@ -1,6 +1,5 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { STRING } from "sequelize";
-import { Table, Column, DataType, Model } from "sequelize-typescript";
+import { Table, Column, Model } from "sequelize-typescript";
 
 @ObjectType()
 @Table({ tableName: 'order' })

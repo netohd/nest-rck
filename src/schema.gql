@@ -5,7 +5,7 @@
 input CreateOrderInput {
   address_id: String!
   creation_date: DateTime!
-  id: Int!
+  id: ID!
   status_id: String!
   value: Float!
 }
@@ -28,6 +28,6 @@ type Order {
 }
 
 type Query {
-  findAll: [Order!]!
+  findAll(limit: Int, offset: Int): [Order!]!
   findOne(id: Float!): Order!
 }

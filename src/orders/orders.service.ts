@@ -3,6 +3,7 @@ import { CreateOrderInput } from './dto/create-order.input';
 import { UpdateOrderInput } from './dto/update-order.input';
 import { InjectModel } from '@nestjs/sequelize';
 import { Order } from './orders.model';
+import { FindAllArgs } from './dto/find-all.args';
 
 @Injectable()
 export class OrdersService {
@@ -15,8 +16,11 @@ export class OrdersService {
     return this.orderModel.create(data as any)
   }
 
-  findAll() {
-    return this.orderModel.findAll();
+  findAll(args: FindAllArgs) {
+    return this.orderModel.findAll({ 
+      limit: args.limit, 
+      offset: args.offset 
+    });
   }
 
   findOne(id: number): Promise<Order> {
